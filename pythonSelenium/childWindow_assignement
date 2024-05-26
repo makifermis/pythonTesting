@@ -1,0 +1,48 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+driver = webdriver.Chrome()
+
+try:
+   
+    driver.get("https://rahulshettyacademy.com/loginpagePractise/")
+
+  
+    free_access_link = driver.find_element(By.LINK_TEXT, "Free Access to InterviewQues/ResumeAssistance/Material")
+    free_access_link.click()
+
+  
+    time.sleep(2)
+
+    
+    driver.switch_to.window(driver.window_handles[1])
+
+
+    content_text = driver.find_element(By.CSS_SELECTOR, "p.im-para.red").text
+    email = content_text.split("at ")[1].split(" ")[0]
+
+  
+    driver.close()
+    driver.switch_to.window(driver.window_handles[0])
+
+   
+    username_field = driver.find_element(By.ID, "username")
+    username_field.send_keys(email)
+
+   
+    password_field = driver.find_element(By.ID, "password")
+    password_field.send_keys("your_password")
+
+    
+    sign_in_button = driver.find_element(By.ID, "signInBtn")
+    sign_in_button.click()
+
+    
+    time.sleep(2) 
+    error_message = driver.find_element(By.CSS_SELECTOR, "div.alert.alert-danger.col-md-12").text
+    print(error_message)
+
+finally:
+    driver.quit()

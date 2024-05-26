@@ -5,8 +5,8 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
-service_obj = Service("/Users/rahulshetty/documents/chromedriver")
-driver = webdriver.Chrome(service=service_obj)
+#service_obj = Service("/Users/rahulshetty/documents/chromedriver")
+driver = webdriver.Chrome()
 driver.implicitly_wait(5)
 driver.maximize_window()
 driver.get("https://rahulshettyacademy.com/AutomationPractice/")
